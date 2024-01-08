@@ -1,31 +1,37 @@
 ﻿using DiskMonitoring.Client.Infrastructure.SignalR;
+using DiskMonitoring.Client.Module;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace Client;
 
-public class ReportsHostedService : IHostedService
+public class ReportHostedService : IHostedService
 {
     private readonly IMessageHubProxy _messageHubProxy;
-    private readonly ILogger<ReportsHostedService> _logger;
+    private readonly ILogger<ReportHostedService> _logger;
+    private readonly IReportService _reportService;
 
-    public ReportsHostedService(
+    public ReportHostedService(
         IMessageHubProxy messageHubProxy,
-        ILogger<ReportsHostedService> logger)
-    {
-        _messageHubProxy = messageHubProxy;
+        ILogger<ReportHostedService> logger,
+        IReportService reportService)
+    {        
         _logger = logger;
+        _reportService = reportService;
+        _messageHubProxy = messageHubProxy;
     }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
-        _logger.LogInformation($"Starting reports service");
+        _logger.LogInformation($"Starting report service");
 
         await _messageHubProxy.InitiateConenction();
 
         while (!cancellationToken.IsCancellationRequested)
         {
-            await _messageHubProxy.SendReport("test"); // todo
+            var message = _reportService.CalculateReport();
+
+            await _messageHubProxy.SendReport(message);
 
             await Task.Delay(TimeSpan.FromSeconds(59)); // todo - add to configuration
         }
@@ -35,6 +41,6 @@ public class ReportsHostedService : IHostedService
     {
         await _messageHubProxy.Dispose();
 
-        _logger.LogInformation($"Stopping reports service");
+        _logger.LogInformation($"Stopping report service");
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Client;
 using DiskMonitoring.Client.Infrastructure.SignalR;
+using DiskMonitoring.Client.Module;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +23,8 @@ try
         .ConfigureServices(services =>
         {
             services.AddTransient<IMessageHubProxy, MessageHubProxy>();
-            services.AddHostedService<ReportsHostedService>();
+            services.AddTransient<IReportService, ReportService>();
+            services.AddHostedService<ReportHostedService>();
         })
         .Build()
         .RunAsync();
