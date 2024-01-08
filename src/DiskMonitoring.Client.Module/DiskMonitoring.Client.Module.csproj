@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiskMonitoring.Client.Core\DiskMonitoring.Client.Core.csproj" />
     <ProjectReference Include="..\DiskMonitoring.Client.Infrastructure\DiskMonitoring.Client.Infrastructure.csproj" />
   </ItemGroup>
 
