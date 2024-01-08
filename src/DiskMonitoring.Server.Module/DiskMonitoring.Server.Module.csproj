@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DiskMonitoring.Server.Core\DiskMonitoring.Server.Core.csproj" />
     <ProjectReference Include="..\DiskMonitoring.Server.Infrastructure\DiskMonitoring.Server.Infrastructure.csproj" />
   </ItemGroup>

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
 using Polly;
 
 namespace DiskMonitoring.Client.Infrastructure.SignalR;
@@ -18,11 +20,11 @@ public class MessageHubProxy : IMessageHubProxy
     private readonly IAsyncPolicy _retryPolicySendReport;
     private readonly ILogger<MessageHubProxy> _logger;
 
-    public MessageHubProxy(ILogger<MessageHubProxy> logger)
+    public MessageHubProxy(ILogger<MessageHubProxy> logger, IOptions<ConfigSettings> options)
     {
         _logger = logger;
         _hubConnection = new HubConnectionBuilder()
-                .WithUrl("http://localhost:5000/reports")
+                .WithUrl(options.Value.HUB_CONNECTION_URL)
                 .WithAutomaticReconnect()
                 .Build();
 

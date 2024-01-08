@@ -1,5 +1,7 @@
 ﻿using DiskMonitoring.Server.Infrastructure;
 
+using Microsoft.Extensions.Configuration;
+
 using Serilog;
 
 Log.Logger = new LoggerConfiguration()
@@ -8,13 +10,22 @@ Log.Logger = new LoggerConfiguration()
     rollOnFileSizeLimit: true)
     .CreateLogger();
 
+var configuration = new ConfigurationBuilder()
+    .AddEnvironmentVariables()
+    .AddCommandLine(args)
+    .AddJsonFile("appsettings.json")
+    .Build();
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration.Bind(configuration);
+builder.Services.Configure<ConfigSettings>(builder.Configuration);
 
 builder.Logging.AddSerilog();
 builder.Services.AddSignalR();
 builder.Services.AddLogging();
 
-builder.WebHost.UseUrls("http://localhost:5000");
+builder.WebHost.UseUrls(urls: builder.Configuration[nameof(ConfigSettings.WEB_HOST_URL)]!);
 
 var app = builder.Build();
 
