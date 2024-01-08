@@ -5,7 +5,7 @@ using System.Text;
 namespace DiskMonitoring.Client.Core.Volumes;
 
 internal static partial class NativeFindVolumeMethods
-{     
+{
     [DllImport("kernel32.dll", SetLastError = false, CharSet = CharSet.Unicode), SuppressUnmanagedCodeSecurity]
     [return: MarshalAs(UnmanagedType.Bool)]
     internal static extern bool FindVolumeClose(IntPtr hFindVolume);

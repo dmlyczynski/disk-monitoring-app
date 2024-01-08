@@ -1,7 +1,9 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.InteropServices;
+
 using LTRData.Extensions.Buffers;
+
+using Microsoft.Win32.SafeHandles;
 
 namespace DiskMonitoring.Client.Core.DeviceIoControll;
 

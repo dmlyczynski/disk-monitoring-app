@@ -34,7 +34,7 @@ try
             logging.AddSerilog();
         })
         .ConfigureServices((context, services) =>
-        {            
+        {
             context.Configuration.Bind(configuration);
             services.Configure<ConfigSettings>(context.Configuration);
 

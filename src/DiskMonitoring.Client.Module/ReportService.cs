@@ -1,7 +1,9 @@
 ﻿using System.Text;
 using System.Text.Json;
+
 using DiskMonitoring.Client.Core.DeviceIoControll;
 using DiskMonitoring.Client.Core.Volumes;
+
 using Microsoft.Extensions.Logging;
 
 namespace DiskMonitoring.Client.Module;
@@ -18,8 +20,8 @@ public class ReportService : IReportService
     private readonly INativeDiskService _nativeDiskService;
 
     public ReportService(
-        ILogger<ReportService> logger, 
-        IVolumeService volumeService, 
+        ILogger<ReportService> logger,
+        IVolumeService volumeService,
         INativeDiskService nicService)
     {
         _logger = logger;
@@ -53,5 +55,3 @@ public class ReportService : IReportService
         return result;
     }
 }
-
-

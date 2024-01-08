@@ -39,7 +39,7 @@ public class ReportServiceTests
         // Arrange 
         _fixture.Freeze<Mock<IVolumeService>>()
             .Setup(x => x.EnumerateVolumes())
-            .Returns(new[] {"test", "test2"});
+            .Returns(new[] { "test", "test2" });
 
         // Act 
         var result = CreateSut().CalculateReport();
