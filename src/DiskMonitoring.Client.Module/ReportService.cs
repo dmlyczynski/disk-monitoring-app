@@ -11,30 +11,37 @@ public interface IReportService
     string CalculateReport();
 }
 
-internal class ReportService : IReportService
+public class ReportService : IReportService
 {
     private readonly ILogger<ReportService> _logger;
+    private readonly IVolumeService _volumeService;
+    private readonly INativeDiskService _nativeDiskService;
 
-    public ReportService(ILogger<ReportService> logger)
+    public ReportService(
+        ILogger<ReportService> logger, 
+        IVolumeService volumeService, 
+        INativeDiskService nicService)
     {
         _logger = logger;
+        _volumeService = volumeService;
+        _nativeDiskService = nicService;
     }
 
     public string CalculateReport()
     {
         StringBuilder stringBuilder = new();
 
-        var list = VolumeServiceHelper.EnumerateVolumes();
+        var list = _volumeService.EnumerateVolumes();
 
         foreach (var item in list)
         {
             stringBuilder.AppendLine($"Volume: {item}");
 
-            var list2 = NativeDiskServiceHelper.GetVolumeDiskExtents(item);
+            var volumeDiskExtents = _nativeDiskService.GetVolumeDiskExtents(item);
 
-            for (int i = 0; i < list2?.Length; i++)
+            for (int i = 0; i < volumeDiskExtents?.Length; i++)
             {
-                DiskExtent file = list2[i];
+                DiskExtent file = volumeDiskExtents[i];
                 stringBuilder.AppendLine($"DiskExtent: {JsonSerializer.Serialize(file)}");
             }
         }
@@ -45,7 +52,6 @@ internal class ReportService : IReportService
 
         return result;
     }
-
 }
 
 

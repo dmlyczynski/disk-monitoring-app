@@ -5,11 +5,16 @@ using LTRData.Extensions.Buffers;
 
 namespace DiskMonitoring.Client.Core.DeviceIoControll;
 
-public static class NativeDiskServiceHelper
+public interface INativeDiskService
+{
+    DiskExtent[]? GetVolumeDiskExtents(string volumeGuid);
+}
+
+public class NativeDiskService : INativeDiskService
 {
     public const uint IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS = 0x560000U;
 
-    public static DiskExtent[]? GetVolumeDiskExtents(string volumeGuid)
+    public DiskExtent[]? GetVolumeDiskExtents(string volumeGuid)
     {
         using var volume = new DiskDevice(volumeGuid.TrimEnd('\\'), 0);
 
@@ -23,7 +28,7 @@ public static class NativeDiskServiceHelper
         }
     }
 
-    private static DiskExtent[] GetVolumeDiskExtents(SafeFileHandle volume)
+    private DiskExtent[] GetVolumeDiskExtents(SafeFileHandle volume)
     {
         const int outdatasize = 776;
 

@@ -3,11 +3,16 @@ using System.Text;
 
 namespace DiskMonitoring.Client.Core.Volumes;
 
-public static class VolumeServiceHelper
+public interface IVolumeService
+{
+    IEnumerable<string> EnumerateVolumes();
+}
+
+public class VolumeService : IVolumeService
 {
     internal const int MaxPathUnicode = 32000;
 
-    public static IEnumerable<string> EnumerateVolumes()
+    public IEnumerable<string> EnumerateVolumes()
     {
         var buffer = new StringBuilder(MaxPathUnicode);
 

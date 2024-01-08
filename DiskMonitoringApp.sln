@@ -13,11 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiskMonitoring.Client.Core"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiskMonitoring.Client.Infrastructure", "src\DiskMonitoring.Client.Infrastructure\DiskMonitoring.Client.Infrastructure.csproj", "{6138B3D3-2B7F-405C-BD71-C42CEA9EE581}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskMonitoring.Server.Core", "src\DiskMonitoring.Server.Core\DiskMonitoring.Server.Core.csproj", "{C9060CD9-FADD-47CB-AFF0-3DC92F82CB16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiskMonitoring.Server.Core", "src\DiskMonitoring.Server.Core\DiskMonitoring.Server.Core.csproj", "{C9060CD9-FADD-47CB-AFF0-3DC92F82CB16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskMonitoring.Server.Infrastructure", "src\DiskMonitoring.Server.Infrastructure\DiskMonitoring.Server.Infrastructure.csproj", "{71BFDA23-4C46-46C4-8407-62AEB091E285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiskMonitoring.Server.Infrastructure", "src\DiskMonitoring.Server.Infrastructure\DiskMonitoring.Server.Infrastructure.csproj", "{71BFDA23-4C46-46C4-8407-62AEB091E285}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskMonitoring.Server.Module", "src\DiskMonitoring.Server.Module\DiskMonitoring.Server.Module.csproj", "{9FD1F94E-46F3-4479-AF74-9F797FA1C40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiskMonitoring.Server.Module", "src\DiskMonitoring.Server.Module\DiskMonitoring.Server.Module.csproj", "{9FD1F94E-46F3-4479-AF74-9F797FA1C40F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{717E2DEC-CF35-4F96-BD23-B50267DF2ED6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskMonitoring.Client.Tests", "tests\DiskMonitoring.Client.Tests\DiskMonitoring.Client.Tests.csproj", "{BA7BA657-138B-449B-A346-8B4D0F773CAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +53,10 @@ Global
 		{9FD1F94E-46F3-4479-AF74-9F797FA1C40F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FD1F94E-46F3-4479-AF74-9F797FA1C40F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FD1F94E-46F3-4479-AF74-9F797FA1C40F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7BA657-138B-449B-A346-8B4D0F773CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7BA657-138B-449B-A346-8B4D0F773CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7BA657-138B-449B-A346-8B4D0F773CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7BA657-138B-449B-A346-8B4D0F773CAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{C9060CD9-FADD-47CB-AFF0-3DC92F82CB16} = {B5BC0D5B-CB60-4A89-8F63-DA396D55D54F}
 		{71BFDA23-4C46-46C4-8407-62AEB091E285} = {B5BC0D5B-CB60-4A89-8F63-DA396D55D54F}
 		{9FD1F94E-46F3-4479-AF74-9F797FA1C40F} = {B5BC0D5B-CB60-4A89-8F63-DA396D55D54F}
+		{BA7BA657-138B-449B-A346-8B4D0F773CAC} = {717E2DEC-CF35-4F96-BD23-B50267DF2ED6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {830948DE-D06D-4AD2-8A5A-2B2F80623009}

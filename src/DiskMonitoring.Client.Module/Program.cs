@@ -1,4 +1,6 @@
-﻿using DiskMonitoring.Client.Infrastructure;
+﻿using DiskMonitoring.Client.Core.DeviceIoControll;
+using DiskMonitoring.Client.Core.Volumes;
+using DiskMonitoring.Client.Infrastructure;
 using DiskMonitoring.Client.Infrastructure.SignalR;
 using DiskMonitoring.Client.Module;
 
@@ -36,6 +38,8 @@ try
             context.Configuration.Bind(configuration);
             services.Configure<ConfigSettings>(context.Configuration);
 
+            services.AddTransient<INativeDiskService, NativeDiskService>();
+            services.AddTransient<IVolumeService, VolumeService>();
             services.AddTransient<IMessageHubProxy, MessageHubProxy>();
             services.AddTransient<IReportService, ReportService>();
             services.AddHostedService<ReportHostedService>();
