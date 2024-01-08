@@ -5,7 +5,7 @@ using LTRData.Extensions.Buffers;
 
 namespace DiskMonitoring.Client.Core.DeviceIoControll;
 
-internal static class NativeDiskServiceHelper
+public static class NativeDiskServiceHelper
 {
     public const uint IOCTL_VOLUME_GET_VOLUME_DISK_EXTENTS = 0x560000U;
 
