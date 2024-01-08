@@ -41,7 +41,7 @@ internal class ReportService : IReportService
 
         var result = stringBuilder.ToString();
 
-        _logger.LogInformation("Report:\r\n{0}", result);
+        _logger.LogInformation("Calculate report:\r\n{0}", result);
 
         return result;
     }
