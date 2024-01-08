@@ -30,7 +30,7 @@ public class ReportHostedService : IHostedService
     {
         _logger.LogInformation($"Starting report service");
 
-        await _messageHubProxy.InitiateConenction();
+        await _messageHubProxy.InitiateConenction(cancellationToken);
 
         while (!cancellationToken.IsCancellationRequested)
         {

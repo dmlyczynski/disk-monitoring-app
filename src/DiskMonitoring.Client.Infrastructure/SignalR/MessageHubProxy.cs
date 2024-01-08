@@ -9,7 +9,7 @@ namespace DiskMonitoring.Client.Infrastructure.SignalR;
 public interface IMessageHubProxy
 {
     Task SendReport(string message);
-    Task InitiateConenction();
+    Task InitiateConenction(CancellationToken cancellationToken);
     Task Dispose();
 }
 
@@ -38,19 +38,21 @@ public class MessageHubProxy : IMessageHubProxy
         _retryPolicySendReport = Policy
            .Handle<InvalidOperationException>()
            .Or<TaskCanceledException>()
-           .WaitAndRetryForeverAsync(retryAttempt => TimeSpan.FromSeconds(2), onRetry: async (_, _, _) => await InitiateConenction());
+           .WaitAndRetryForeverAsync(retryAttempt => TimeSpan.FromSeconds(2), onRetry: async (_, _, _) => await InitiateConenction(default));
         ;
     }
 
-    public async Task InitiateConenction()
+    public async Task InitiateConenction(CancellationToken cancellationToken)
     {
-        await _retryPolicy.ExecuteAsync(async () =>
+        var policyContext = new Context("RetryContext");
+
+        await _retryPolicy.ExecuteAsync(async (_, _) =>
         {
             if (_hubConnection.State == HubConnectionState.Disconnected)
             {
-                await _hubConnection.StartAsync();
+                await _hubConnection.StartAsync(cancellationToken);
             }
-        });
+        }, policyContext, cancellationToken);
     }
 
     public async Task SendReport(string message)
